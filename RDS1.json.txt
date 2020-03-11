@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  RDSStartStop:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: 'RDSStartStopper::RDSStartStopper.Function::FunctionHandler'
+      Runtime: dotnetcore2.1
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 900
+      Role: 'arn:aws:iam::306592655528:role/MLA1822@'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: cron(30 06 ? * 2-6 *)
+        Schedule2:
+          Type: Schedule
+          Properties:
+            Schedule: cron(00 01 ? * 3-7 *)
+      # Tags:
+      #   'tr:resource-owner': RakeshBabu.Paruchuri@thomsonreuters.com
+      #   'tr:resource-owner-role-id': AROAJP6LNNQQ55ULED4WG
+      #   'tr:application-asset-insight-id': '204044'
